@@ -6,7 +6,7 @@ ContactListSort
 Screenshot images
 ===============
 
-![Screenshot](https://github.com/jimneylee/ContactListSort/blob/master/Screenshots/screenshot1.png)
+![image](https://github.com/jimneylee/ContactListSort/raw/master/Screenshots/screenshot1.png)
  
 Contact me
 ===============
