@@ -21,4 +21,4 @@ Contact me
 
 Email: jimney@163.com 
 
-Weibo: http://weibo.com/u/1831553040
+Weibo: [@jimneylee](http://weibo.com/u/1831553040)
