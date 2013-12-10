@@ -1,43 +1,37 @@
 //
-//  ContacListEntity.m
-//  ContactListSortDemo
+//  JLTableSection.m
+//  JLNameSectionSort
 //
 //  Created by jimney on 13-3-12.
 //  Copyright (c) 2013年 jimneylee. All rights reserved.
 //
 
-#import "SectionListBaseEntity.h"
-#import "SectionItemBaseEntity.h"
+#import "JLTableSection.h"
+#import "JLNameItem.h"
 
-@implementation SectionListBaseEntity
-
-- (void)dealloc
-{
-    self.unsortedArray = nil;
-    self.sections = nil;
-    self.items = nil;
-    [super dealloc];
-}
+@implementation JLTableSection
 
 - (void)sort
 {
     NSMutableArray* sections = [NSMutableArray array];
     NSMutableArray* items = [NSMutableArray array];
     NSMutableArray* aItems = nil;
+    
 #ifdef DEBUG
     NSLog(@"================before====================");
-    for (SectionItemBaseEntity* e in self.unsortedArray) {
-        NSLog(@"%@", e.name);
+    for (JLNameItem* item in self.unsortedArray) {
+        NSLog(@"%@", item.name);
     }
 #endif
     
+    // 调用内部方法进行compare
     NSArray* sortedArray = [self.unsortedArray sortedArrayUsingSelector:@selector(compare:)];
     
 #ifdef DEBUG
     NSLog(@"=================after sort=====================");
     
-    for (SectionItemBaseEntity* e in sortedArray) {
-        NSLog(@"%@", e.name);
+    for (JLNameItem* item in sortedArray) {
+        NSLog(@"%@", item.name);
     }
 #endif
     // step1、初始生成26 + 1个sections和items
@@ -54,15 +48,15 @@
     
     // step2
     int index = 0;
-    for (SectionItemBaseEntity* e in sortedArray) {
-        if (e.firstLetter >= 'A' && e.firstLetter <= 'Z') {
-            index = e.firstLetter - 'A';
+    for (JLNameItem* item in sortedArray) {
+        if (item.firstLetter >= 'A' && item.firstLetter <= 'Z') {
+            index = item.firstLetter - 'A';
             aItems = [items objectAtIndex:index];
-            [aItems addObject:e];
+            [aItems addObject:item];
         }
         else {
             aItems = [items objectAtIndex:items.count - 1];
-            [aItems addObject:e];
+            [aItems addObject:item];
         }
     }
     
@@ -78,15 +72,15 @@
         }
     }
     
-    self.sections = newSections;
-    self.items = newItems;
+    self.sectionTitles = newSections;
+    self.setionItems = newItems;
     
 #ifdef DEBUG
     NSLog(@"=================after section===============");
-    for (NSArray* array in self.items) {
+    for (NSArray* array in self.setionItems) {
         NSLog(@"________________________________________");
-        for (SectionItemBaseEntity* e in array) {
-            NSLog(@"%@", e.name);
+        for (JLNameItem* item in array) {
+            NSLog(@"%@", item.name);
         }
     }
     NSLog(@"=================end======================");

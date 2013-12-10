@@ -1,30 +1,22 @@
 //
-//  ContacListEntity.m
-//  ContactListSortDemo
+//  JLNameItem.m
+//  JLNameSectionSort
 //
 //  Created by jimney on 13-3-12.
 //  Copyright (c) 2013年 jimneylee. All rights reserved.
 //
 
-#import "SectionItemBaseEntity.h"
+#import "JLNameItem.h"
 #import "pinyin.h"
 
-@implementation SectionItemBaseEntity
-@synthesize name = _name, sortString = _sortString, firstLetter = _firstLetter;
+@implementation JLNameItem
 
-- (void)dealloc {
-    self.name = nil;
-    self.sortString = nil;
-    [super dealloc];
-}
-
-#pragma mark Private
 - (NSString* )createSortString
 {
     NSMutableString* sortedString = [NSMutableString string];
     unichar aChar;
     unichar pinyinChar;
-    for (int i = 0; i < self.name.length; i++) {
+    for (NSUInteger i = 0; i < self.name.length; i++) {
         aChar = [self.name characterAtIndex:i];
         // 判断首字母是否为英文
         if ((aChar >= 'A' && aChar <= 'Z') ||
@@ -52,9 +44,7 @@
     return sortedString;
 }
 
-#pragma mark Private
-
-- (NSComparisonResult)compare:(SectionItemBaseEntity*)other
+- (NSComparisonResult)compare:(JLNameItem*)other
 {
     return [self.sortString compare:other.sortString];
 }
